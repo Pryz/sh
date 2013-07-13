@@ -23,7 +23,7 @@ for vmname in $(cat $LISTVMS); do
     echo "Build $vmname"
 
     # If needed, remove old instance
-    $(virsh list --all|grep ubuntu1 &> /dev/null)
+    $(virsh list --all|grep $vmname &> /dev/null)
     if [ $? -eq 0 ]; then
         echo "Remove old $vmname and its storage"
         $(virsh undefine $vmname --remove-all-storage &>> $LOGFILE)
