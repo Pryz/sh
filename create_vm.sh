@@ -30,6 +30,7 @@ for vmname in $(cat $LISTVMS); do
     fi
 
     # Delete old disk if exists and create new one
+    DISK="$DISKPATH/$vmname.img"
     [ -f $DISK ] && $(sudo rm -f $DISK)
     $(sudo qemu-img create -f raw $DISKPATH/$vmname.img $DISKSIZE &>> $LOGFILE)
 
